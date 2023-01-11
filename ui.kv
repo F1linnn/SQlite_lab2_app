@@ -1,0 +1,297 @@
+<TechnologistScreen>:
+    BoxLayout:
+        orientation:'vertical'
+        padding: 10
+        spacing: 5
+        Button:
+            text:'Клиенты'
+            background_normal: ''
+            background_color: 1,.71,.73,1
+            color: 0,0,0,1
+            on_press:
+                root.manager.current = 'clients'
+
+        Button:
+            text:'Техника'
+            background_normal: ''
+            background_color: 1,.71,.73,1
+            color: 0,0,0,1
+            on_press: root.manager.current = "tehnika"
+
+
+
+<ClientsScreen>
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_normal: ''
+            background_color: 1,.71,.73,1
+            color: 0,0,0,1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'technologist'
+            size_hint: .1,1
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    id:IDman
+                    text: 'ID'
+                    color: 0,0,0,1
+                Label:
+                    id:id_fullname_label
+                    text: 'ФИО'
+                    color: 0,0,0,1
+                Label:
+                    id:id_depart
+                    text: 'Подразделение'
+                    color: 0,0,0,1
+                Label:
+                    id:id_role
+                    text: 'Должность'
+                    color: 0,0,0,1
+                Label:
+                    id:id_date_label
+                    text: 'Год рождения'
+                    color: 0,0,0,1
+                Label:
+                    id:id_sex
+                    text: 'Пол'
+                    color: 0,0,0,1
+                Label:
+                    id:id_start
+                    text: 'Дата начала работы'
+                    color: 0,0,0,1
+                Label:
+                    id:id_end
+                    text: 'Дата окончания работы'
+                    color: 0,0,0,1
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1,.1
+                Button:
+                    text:'Обновить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.show_clients()
+                Button:
+                    text:'Добавить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.manager.current = 'addclient'
+                Button:
+                    text:'Изменить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.manager.current = 'clients'
+                Button:
+                    text:'Удалить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.manager.current = 'delclient'
+
+
+<AddClientScreen>:
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_color: .78,.57,.87,.8
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'clients'
+            size_hint: .1,1
+        BoxLayout:
+            padding:50
+            spacing:20
+            orientation: 'vertical'
+            TextInput:
+                id:ID
+                hint_text:'ID сотрудника'
+            TextInput:
+                id:name
+                hint_text:'ФИО'
+            TextInput:
+                id:date
+                hint_text:'Год рождения'
+            TextInput:
+                id:sex
+                hint_text:'Пол'
+            TextInput:
+                id:departament
+                hint_text:'Подразделение'
+            TextInput:
+                id:role
+                hint_text:'Должность'
+            TextInput:
+                id:start
+                hint_text:'Дата начала работы'
+
+            Button:
+                on_press: root.add(ID.text,name.text,date.text,sex.text,departament.text, role.text, start.text, 'None')
+                text: 'Добавить'
+                background_color: .78,.57,.87,.8
+
+<DelClientScreen>:
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_color: .78,.57,.87,.8
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'clients'
+            size_hint: .1,1
+        BoxLayout:
+            padding:50
+            spacing:20
+            orientation: 'vertical'
+            TextInput:
+                id:ID
+                hint_text:'ID сотрудника'
+            Button:
+                on_press: root.delclient(0,ID.text)
+                text: 'Удалить по ID'
+                background_color: .78,.57,.87,.8
+                size_hint: 1,.1
+            TextInput:
+                id:full_name
+                hint_text:'ФИО'
+            Button:
+                on_press: root.delclient(1,full_name.text)
+                text: 'Удалить по ФИО'
+                background_color: .78,.57,.87,.8
+                size_hint: 1,.1
+
+            TextInput:
+                id:role
+                hint_text:'Должность'
+            Button:
+                on_press: root.delclient(2,role.text)
+                text: 'Удалить по должности'
+                background_color: .78,.57,.87,.8
+                size_hint: 1,.1
+
+
+<Devices>:
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_normal: ''
+            background_color: 1,.71,.73,1
+            color: 0,0,0,1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'technologist'
+            size_hint: .1,1
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    id: id_device
+                    text: 'IDтехники'
+                    color: 0,0,0,1
+                Label:
+                    id: name
+                    text: 'Название'
+                    color: 0,0,0,1
+                Label:
+                    id: model
+                    text: 'Модель'
+                    color: 0,0,0,1
+                Label:
+                    id: year
+                    text: 'Год выпуска'
+                    color: 0,0,0,1
+                Label:
+                    id: dep
+                    text: 'Подразделение'
+                    color: 0,0,0,1
+                Label:
+                    id: status
+                    text: 'Статус'
+                    color: 0,0,0,1
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1,.1
+                Button:
+                    text:'Обновить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.show_info()
+                Button:
+                    text:'Добавить'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.manager.current = 'adddevice'
+                Button:
+                    text:'Списать технику'
+                    background_normal: ''
+                    background_color: .78,.57,.87,.8
+                    color: 0,0,0,1
+                    on_press: root.manager.current = 'deldevice'
+
+<AddDevice>:
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_color: .78,.57,.87,.8
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'tehnika'
+            size_hint: .1,1
+        BoxLayout:
+            padding:50
+            spacing:20
+            orientation: 'vertical'
+            TextInput:
+                id:ID
+                hint_text:'ID техники'
+            TextInput:
+                id:name
+                hint_text:'Название'
+            TextInput:
+                id:model
+                hint_text:'Модель'
+            TextInput:
+                id:year
+                hint_text:'Год выпуска'
+            TextInput:
+                id:departament
+                hint_text:'Подразделение'
+
+            Button:
+                on_press:
+                    root.add_device(ID.text,name.text,model.text,year.text,departament.text, 'None')
+                text: 'Добавить'
+                background_color: .78,.57,.87,.8
+
+<DelDevice>:
+    BoxLayout:
+        Button:
+            text: 'Назад'
+            background_color: .78,.57,.87,.8
+            on_release:
+                root.manager.current = "tehnika"
+            size_hint: .1,1
+        BoxLayout:
+            padding:50
+            spacing:20
+            orientation: 'vertical'
+            TextInput:
+                id:ID
+                hint_text:'IDтехники'
+            Button:
+                on_press: root.deldevice(0,ID.text)
+                text: 'Списать технику по ID'
+                background_color: .78,.57,.87,.8
+                size_hint: 1,.1
+
+
